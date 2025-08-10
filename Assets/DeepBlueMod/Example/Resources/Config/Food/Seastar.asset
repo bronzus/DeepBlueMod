@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1a47980991247179ab1f38902a4870d, type: 3}
+  m_Name: Seastar
+  m_EditorClassIdentifier: 
+  floatInWater: 0
+  dragInWater: 10
+  angularDragInWater: 15
+  dragOutWater: 0.1
+  angularDragOutWater: 0.05
+  defaultFoodLevel: 10
+  wholeFoodSize: 5
+  defaultAddCharacterExperience: 30
+  addCharacterHP: 18
+  eatTimes: 1
+  splitHp: 2

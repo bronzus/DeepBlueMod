@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d571febe6d2f44ed97d9ebec0db34177, type: 3}
+  m_Name: ModContent
+  m_EditorClassIdentifier: 
+  modMapInfos:
+  - scenePath: Assets/DeepBlueMod/Example/Scenes/ExampleScene.unity
+    sceneIcon: {fileID: 21300000, guid: f8eef0c5983eb854fbd5865c9647ad28, type: 3}
+    mapNameKey: Example
+    characterInMapTagCondition:
+    - SeaFish
+    modMapExtraInfo:
+      useOriginalWater: 1
+      waterPrefabName: SeaWater
+  nonPlayableCharacters:
+  - {fileID: 5263288699466844371, guid: f507b95531ce9374a95c367d2d60d4ed, type: 3}
+  playableCharacters:
+  - {fileID: 5492629886514492783, guid: c9bc3c5e702c883458d0a4fabf9188c0, type: 3}
+  foods:
+  - {fileID: 89317146295506097, guid: c708b43802a3ee2488ce87e734903a1b, type: 3}
+  - {fileID: 89317146295506097, guid: 0443b930971142b4f9db3b5880f871eb, type: 3}
+  - {fileID: 89317146295506097, guid: 50ccca48961153543ad7ce22d839dea8, type: 3}
+  - {fileID: 89317146295506097, guid: 960eec065e54e0347b56e5a40d2d8bc3, type: 3}
+  - {fileID: 89317146295506097, guid: d989241f21872c7459610d43220103a4, type: 3}
+  - {fileID: 89317146295506097, guid: b569a89eb1c771f428e463a7d3268a86, type: 3}
+  - {fileID: 89317146295506097, guid: a314896f43eae224880fc22865eee7e3, type: 3}
+  skills:
+  - {fileID: 6225660040155756410, guid: 2be836cc084d7774198182c26fbeaadc, type: 3}
+  buffs:
+  - {fileID: 7144415140434168974, guid: 0588edcb5b80d864083d4d6bca27c766, type: 3}

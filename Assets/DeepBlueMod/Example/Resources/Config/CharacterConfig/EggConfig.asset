@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee9d37800c5548e0ba1af49b6c089cff, type: 3}
+  m_Name: EggConfig
+  m_EditorClassIdentifier: 
+  characterRank: 1
+  initialSpeed: 3.5
+  initialSprintFactor: 3.5
+  initialTurnSmoothing: 5
+  biteCharacterMaxSeconds: 2
+  biteCharacterDamageInterval: 0.95
+  initialMaxHp: 626
+  initialAttackPower: 61
+  initialMaxSp: 6
+  initialSpDecreaseSpeed: 1
+  initialSpIncreaseSpeed: 2
+  criticalChance: 0.1
+  criticalMul: 1.5
+  initialTheoreticalSize: 3.5
+  characterTags:
+  - SeaFish
+  - EvolveInitialFish
+  coinsObtainedAfterKilled: {fileID: 11400000, guid: 4b2e54e78e3c43e4681119509c50225f,
+    type: 2}
+  growConfig: {fileID: 11400000, guid: 6e905b8a28443e440a9b90087c0ba5d5, type: 2}
+  characterAiConfig: {fileID: 11400000, guid: acf04ee8a61e8054580053a80c85636b, type: 2}
+  characterEvolveConfig: {fileID: 11400000, guid: d2b5be8799c4ab94f93e823e62fb6b44,
+    type: 2}
+  UnlockCondition:
+    coinNumber: 0
+    killNumber: 0
+  expConfig: {fileID: 11400000, guid: 580cac14e5633d44f936c00c87f4403a, type: 2}
+  mouthConfig: {fileID: 11400000, guid: ece731502539d6747ae4f88542330620, type: 2}
+  characterDieActionConfig: {fileID: 11400000, guid: bf71ef8e691d58445bd15a976d25d292,
+    type: 2}
+  swimBehaviourConfig: {fileID: 11400000, guid: 530f66a1cb0c7114cab550a9c98f96a3,
+    type: 2}
