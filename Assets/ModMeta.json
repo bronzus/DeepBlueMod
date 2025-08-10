@@ -1,7 +1,6 @@
 {
     "modDir": "Assets/DeepBlueMod/Example",
     "modBuildDir": "D:\\code\\fish\\Mods",
-    "id": "6f30443b-732e-448d-bdcd-b7757c7a1d3f",
     "name": "Example",
     "modContentAbPath": "Assets/DeepBlueMod/Example/Resources/ModContent.asset",
     "description": "Example mod",

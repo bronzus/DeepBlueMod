@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using UnityEngine.Serialization;
 
 namespace kz.config
 {
@@ -21,16 +22,26 @@ namespace kz.config
             public Vector3 mapStartPos;
             public Vector3 mapEndPos;
         }
-        
+
+        public enum FollowerGenerateType
+        {
+            GiveBirthToAChild,
+            AutoGenerateFollower
+        }
+
         public Vector2 mapHeightRange = new Vector2(-30, 10);
         public float waterLevel = 0f;
-        public float highDetailSqrDst = 10000f;
+        public float closeSyncSqrDst = 2500f;
+        public float mediumSyncSqrDst = 8100f;
+        public float showObjSqrDst = 20000f;
         public float npcUnSpawnExtraSqrDst = 400f;
-        public float foodUnSpawnExtraSqrDst = 400f;
+        public float canBeBittenObjUnSpawnExtraSqrDst = 400f;
         public MiniMapConfig miniMapConfig;
         public List<LayerCullDistanceConfig> allLayerCullDistanceConfig;
         public bool canSameKindCharacterAttackEachOther = false; // 
         public bool canDieChangeToFollower = false;
+
+        public FollowerGenerateType followerGenerateType;
         
         public int maxAutoGenerateFollowerNumber = 5;
         public int autoGenerateFollowerGenerateInterval = 100;
