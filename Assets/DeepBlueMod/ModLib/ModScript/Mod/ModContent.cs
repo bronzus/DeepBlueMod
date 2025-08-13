@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 namespace kz.mod
 {
-    [CreateAssetMenu(fileName = "MapContent", menuName = "ScriptableObject/MapContent", order = 1)]
+    [CreateAssetMenu(fileName = "ModContent", menuName = "ScriptableObject/ModContent", order = 1)]
     public class ModContent: ScriptableObject
     {
         public List<MapInfo> modMapInfos = new List<MapInfo>();
