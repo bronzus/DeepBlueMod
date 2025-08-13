@@ -1,6 +1,7 @@
 {
     "modDir": "Assets/DeepBlueMod/Example",
-    "modBuildDir": "D:\\code\\fish\\Mods",
+    "modBuildDir": "D:\\SteamLibrary\\steamapps\\common\\Deep Blue Devour and Evolve\\Mods",
+    "id": "",
     "name": "Example",
     "modContentAbPath": "Assets/DeepBlueMod/Example/Resources/ModContent.asset",
     "description": "Example mod",
