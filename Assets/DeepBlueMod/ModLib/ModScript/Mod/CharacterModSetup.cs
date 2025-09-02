@@ -6,5 +6,6 @@ namespace kz.mod
 {
     public class CharacterModSetup:MonoBehaviour
     {
+        public bool addDefaultSoundMangerPrefab = true;
     }
 }

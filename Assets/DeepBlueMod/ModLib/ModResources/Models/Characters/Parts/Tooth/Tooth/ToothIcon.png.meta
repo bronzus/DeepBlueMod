@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-guid: c412d5b9b3162d34e909fe9264f3690d
+guid: 15edcf77807a9b047b11ee62d7145ffb
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tooth_0
+      name: ToothIcon_0
       rect:
         serializedVersion: 2
         x: 23
-        y: 698
+        y: 480
         width: 436
-        height: 209
+        height: 427
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,41 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 772c779659a81504b95a1825edb89381
-      internalID: 928258087
+      spriteID: b23db25ff9e18a146bcea8d6e3a4f4b5
+      internalID: 1579794992
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tooth_1
+      name: ToothIcon_2
       rect:
         serializedVersion: 2
-        x: 69
-        y: 484
-        width: 343
-        height: 184
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b4a517b06397d91498221bce17c5e956
-      internalID: 363805773
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Tooth_2
-      rect:
-        serializedVersion: 2
-        x: 19
-        y: 296
+        x: 17
+        y: 60
         width: 444
-        height: 112
+        height: 368
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,29 +145,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e61cf641a299ba1489cabde35074bca9
-      internalID: -167708927
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Tooth_3
-      rect:
-        serializedVersion: 2
-        x: 62
-        y: 74
-        width: 354
-        height: 89
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8727497c5880bed4ead4626fb45c013f
-      internalID: 61170208
+      spriteID: 228a52870c7b6eb4e8d0d3ef5e8f083c
+      internalID: 1567459433
       vertices: []
       indices: 
       edges: []
@@ -196,7 +154,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 0a26a4fe331af614ca79441654a74793
     internalID: 0
     vertices: []
     indices: 
@@ -204,10 +162,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Tooth_0: 928258087
-      Tooth_1: 363805773
-      Tooth_2: -167708927
-      Tooth_3: 61170208
+      ToothIcon_0: 1579794992
+      ToothIcon_1: 905570649
+      ToothIcon_2: 1567459433
+      ToothIcon_3: -294215702
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

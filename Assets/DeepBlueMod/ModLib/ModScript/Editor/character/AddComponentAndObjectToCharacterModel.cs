@@ -1,7 +1,9 @@
 using kz;
+using kz.mod;
 using Mirror;
 using UnityEngine;
 using UnityEditor;
+using kz.config;
 
 
 namespace kz.editor
@@ -10,8 +12,10 @@ namespace kz.editor
     {
         private GameObject toothPrefab;
         private GameObject mouthPrefab;
-
+        private GameObject buttPrefab;
         private GameObject characterPreviewPrefab;
+        private CharacterConfig characterConfig;
+        private GameObject behaviourTreePrefab;
 
         [MenuItem("Tools/kz/Character/Add Components and game object to character model")]
         public static void ShowWindow()
@@ -29,9 +33,15 @@ namespace kz.editor
                 (GameObject)EditorGUILayout.ObjectField("toothPrefab", toothPrefab, typeof(GameObject), false);
             mouthPrefab =
                 (GameObject)EditorGUILayout.ObjectField("mouthPrefab", mouthPrefab, typeof(GameObject), false);
+            buttPrefab =
+                (GameObject)EditorGUILayout.ObjectField("buttPrefab", buttPrefab, typeof(GameObject), false);
             characterPreviewPrefab = (GameObject)EditorGUILayout.ObjectField("characterPreviewPrefab",
                 characterPreviewPrefab, typeof(GameObject), false);
-
+            characterConfig = (CharacterConfig)EditorGUILayout.ObjectField("characterConfig",
+                characterConfig, typeof(CharacterConfig), false);
+            behaviourTreePrefab = (GameObject)EditorGUILayout.ObjectField("behaviourTreePrefab", behaviourTreePrefab,
+                typeof(GameObject), false);
+                
             if (GUILayout.Button("Add Prefab to Selected GameObject"))
             {
                 AddComponentsAndGameObjectToCharacterModel();
@@ -51,6 +61,18 @@ namespace kz.editor
             if (this.mouthPrefab == null)
             {
                 Debug.LogError("No mouthPrefab selected!");
+                return;
+            }
+            
+            if (this.buttPrefab == null)
+            {
+                Debug.LogError("No buttPrefab selected!");
+                return;
+            }
+
+            if (this.characterConfig == null)
+            {
+                Debug.Log("No CharacterConfig selected");
                 return;
             }
 
@@ -82,6 +104,7 @@ namespace kz.editor
 
                 var charCore = ForceAddComponent<CharacterCore>(obj);
                 charCore.characterPreviewPrefab = this.characterPreviewPrefab;
+                charCore.defaultCharacterConfig = characterConfig;
                 ForceAddComponent<CharacterAnimator>(obj);
                 ForceAddComponent<CharacterDieAction>(obj);
                 
@@ -90,29 +113,37 @@ namespace kz.editor
 
                 // AI
                 ForceAddComponent<BoidsCore>(obj);
-                ForceAddComponent<AIControllerCore>(obj);
+                var aiCore = ForceAddComponent<AIControllerCore>(obj);
+                aiCore.behaviourTreePrefab = behaviourTreePrefab;
 
                 // GrowCore
                 var growCore = ForceAddComponent<GrowCore>(obj);
 
                 ForceAddComponent<SkillBuffCore>(obj);
+                ForceAddComponent<CharacterModSetup>(obj);
+                
 
                 // 添加一个牙齿part
-                RemoveGameObjectIfExists(obj, this.toothPrefab.name);
                 GameObject toothInstance = (GameObject)PrefabUtility.InstantiatePrefab(this.toothPrefab);
                 toothInstance.transform.SetParent(obj.transform, false);
                 var toothScript = toothInstance.GetComponent<Tooth>();
                 toothScript.characterCore = charCore;
 
                 // 添加一个嘴巴
-                RemoveGameObjectIfExists(obj, this.mouthPrefab.name);
                 GameObject mouthInstance = (GameObject)PrefabUtility.InstantiatePrefab(this.mouthPrefab);
                 mouthInstance.transform.SetParent(obj.transform, false);
                 var mouthScript = mouthInstance.GetComponent<Mouth>();
                 mouthScript.characterCore = charCore;
                 
+                // 添加一个屁股
+                GameObject buttInstance = (GameObject)PrefabUtility.InstantiatePrefab(this.buttPrefab);
+                buttInstance.transform.SetParent(obj.transform, false);
+                var buttScript = buttInstance.GetComponent<Butt>();
+                buttScript.characterCore = charCore;
+                
                 charCore.tooth = toothInstance.GetComponent<Tooth>();
                 charCore.mouth = mouthInstance.GetComponent<Mouth>();
+                charCore.butt = buttInstance.GetComponent<Butt>();
             }
         }
 

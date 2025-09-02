@@ -15,11 +15,4 @@ namespace kz.mod
         public List<GameObject> buffs = new List<GameObject>();
     }
     
-    [System.Serializable]
-    public class ModInfo
-    {
-        public string modName;
-        public string modContentPath;
-        public string modVersion;
-    }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEditor;
 
@@ -19,6 +20,7 @@ public class ModInfo
     public ModType modType;
     public ulong buildTime;
     public ulong publishedFileID;
+    public string modAPIVersion = "v2";
 }
 
 public class PackSetting: EditorWindow
@@ -33,7 +35,6 @@ public class PackSetting: EditorWindow
         public string modContentAbPath;
         public string description;
         public ulong publishedFileID;
-        
         private static string modMetaJsonPath = Path.Join("Assets", "ModMeta.json");
         
         public static ModMeta Init()
@@ -53,10 +54,10 @@ public class PackSetting: EditorWindow
         }
     }
     
-    private string modResourceDir = "";
-    private string modSceneDir = "";
     private string modInfoJsonName = "ModInfo.json";
     private string previewImageName = "preview.png";
+    private string modLibResourcesPath = "Assets/DeepBlueMod/ModLib/ModResources";
+    private string ModLibShaderPath = "Assets/DeepBlueMod/ModLib/ModShader";
 
     private ModMeta _modMeta;
 
@@ -83,8 +84,6 @@ public class PackSetting: EditorWindow
     {
         EditorGUILayout.LabelField("mod id", modMeta.id);
         modMeta.modDir = EditorGUILayout.TextField("mod dir",modMeta.modDir);
-        modResourceDir = Path.Join(modMeta.modDir, "Resources");
-        modSceneDir = Path.Join(modMeta.modDir, "Scenes");
         modMeta.modBuildDir = EditorGUILayout.TextField("mod build dir",modMeta.modBuildDir);
         modMeta.name = EditorGUILayout.TextField("mod name",modMeta.name);
         modMeta.modContentAbPath = EditorGUILayout.TextField("modContent AB Path",modMeta.modContentAbPath);
@@ -130,8 +129,7 @@ public class PackSetting: EditorWindow
             }
 
             var dir = CreateExportDir();
-            PackResource(dir);
-            BuildScenes(dir);
+            BuildAllAssetBundles(dir);
             CreateModInfoJson(Path.Combine(dir, modInfoJsonName));
             var previewImagePath = GetPreviewImagePath();
             if (File.Exists(previewImagePath))
@@ -174,55 +172,7 @@ public class PackSetting: EditorWindow
         return exportPath;
     }
     
-    private void PackResource(string buildDir)
-    { 
-        List<AssetBundleBuild> builds = new List<AssetBundleBuild>();
-        
-        var build =  new AssetBundleBuild();
-        build.assetBundleName =$"{modMeta.name}.ab";
-        List<string> _assetDir = new List<string>();
-        _assetDir.Add(modResourceDir);
-
-        //2.setName.
-        build.assetNames = _assetDir.ToArray();
-        builds.Add(build);
-
-        var exportPath = Path.Combine(buildDir, "Resources");
-
-        if (!Directory.Exists(exportPath))
-        {
-            Directory.CreateDirectory(exportPath);
-        }
-        BuildPipeline.BuildAssetBundles(exportPath, builds.ToArray(),
-            BuildAssetBundleOptions.None, BuildTarget.StandaloneWindows64);
-        
-        AssetDatabase.Refresh();
-    }
-
-    private void BuildScenes(string buildDir)
-    {
-        var exportPath = Path.Combine(buildDir, "Scenes");
-        if (!Directory.Exists(exportPath))
-        {
-            Directory.CreateDirectory(exportPath);
-        }
-        if (Directory.Exists(modSceneDir))
-        {
-            // 查找指定目录下的场景文件
-            string[] scenes = GetAllFiles(modSceneDir, "*.unity");
-            for (int i = 0; i < scenes.Length; i++)
-            {
-                string url = scenes[i].Replace("\\", "/");
-                int index = url.LastIndexOf("/");
-                string scene = url.Substring(index + 1, url.Length - index - 1);
-                scene = scene.Replace(".unity", ".scene");
-                BuildPipeline.BuildPlayer(scenes, Path.Combine(exportPath, scene), BuildTarget.StandaloneWindows, BuildOptions.BuildAdditionalStreamedScenes);
-                AssetDatabase.Refresh();
-            }
-            // EditorUtility.ClearProgressBar();
-            Debug.Log("所有场景打包完毕");
-        }
-    }
+    
     
     private static string[] GetAllFiles(string directory, params string[] types)
     {
@@ -243,5 +193,123 @@ public class PackSetting: EditorWindow
     {
         Guid uuid = Guid.NewGuid(); // 生成一个新的 UUID
         return uuid.ToString(); // 转换为字符串格式
+    }
+    
+    
+    // -------------------
+    private void AssignAssetBundles()
+    {
+        // 清除所有现有的AssetBundle分配
+        ClearAllAssetBundleNames();
+        AssignResourcesAssetBundleName();
+        AssetDatabase.RemoveUnusedAssetBundleNames();
+        Debug.Log("AssetBundle分配完成！");
+    }
+    
+    private void ClearAllAssetBundleNames()
+    {
+        // 获取所有AssetBundle名称
+        string[] bundleNames = AssetDatabase.GetAllAssetBundleNames();
+        
+        // 清除所有AssetBundle分配
+        foreach (string bundleName in bundleNames)
+        {
+            AssetDatabase.RemoveAssetBundleName(bundleName, true);
+        }
+        
+        Debug.Log("已清除所有AssetBundle分配");
+    }
+
+    private List<string> GetAssetPaths()
+    {
+        var assetPaths = new List<string>();
+        assetPaths.AddRange(Directory.GetFiles(modMeta.modDir, "*", SearchOption.AllDirectories));
+        assetPaths.AddRange(Directory.GetFiles(modLibResourcesPath, "*", SearchOption.AllDirectories));
+        assetPaths.AddRange(Directory.GetFiles(ModLibShaderPath, "*", SearchOption.AllDirectories));
+        return assetPaths;
+    }
+
+    private void AssignResourcesAssetBundleName()
+    {
+        if (!Directory.Exists(modMeta.modDir))
+        {
+            Debug.LogWarning($"Resources文件夹不存在: {modMeta.modDir}");
+            return;
+        }
+        
+        // 获取所有资源路径（递归）
+        var assetPaths = GetAssetPaths();
+        
+        foreach (string assetPath in assetPaths)
+        {
+            // 跳过.meta文件和场景文件
+            if (assetPath.EndsWith(".meta") || assetPath.EndsWith(".cs"))
+                continue;
+            AssetImporter importer = AssetImporter.GetAtPath(assetPath);
+            if (importer != null)
+            {
+                if (assetPath.EndsWith(".unity"))
+                {
+                    string bundleName = Path.GetFileNameWithoutExtension(assetPath).ToLower();
+                    importer.assetBundleName = $"{bundleName}.scene";
+                }
+                else
+                {
+                    // 分配到base.ab
+                    importer.assetBundleName = "base.ab";
+                }
+            }
+        }
+        
+        Debug.Log($"已将{modMeta.modDir}文件夹下的{assetPaths.Count}个资源分配到base.ab");
+    }
+    
+    private void ClearResourcesAssetBundleName()
+    {
+        if (!Directory.Exists(modMeta.modDir))
+        {
+            Debug.LogWarning($"Resources文件夹不存在: {modMeta.modDir}");
+            return;
+        }
+        
+        // 获取所有资源路径（递归）
+        var assetPaths = GetAssetPaths();
+        
+        foreach (string assetPath in assetPaths)
+        {
+            // 跳过.meta文件和场景文件
+            if (assetPath.EndsWith(".meta") || assetPath.EndsWith(".cs"))
+                continue;
+            AssetImporter importer = AssetImporter.GetAtPath(assetPath);
+            if (importer != null)
+            {
+                importer.assetBundleName = "";
+            }
+        }
+    }
+    
+    
+    public void BuildAllAssetBundles(string exportDir)
+    {
+        // 先分配AssetBundle
+        AssignAssetBundles();
+        
+        string[] assetBundleNames = AssetDatabase.GetAllAssetBundleNames();
+        if (assetBundleNames.Length == 0)
+        {
+            Debug.LogError("没有设置任何AssetBundle名称，请检查资源分配！");
+            return;
+        }
+        
+        // 构建AssetBundle
+        BuildPipeline.BuildAssetBundles(
+            exportDir, 
+            BuildAssetBundleOptions.None, 
+            BuildTarget.StandaloneWindows64
+        );
+        
+        Debug.Log($"AssetBundle打包完成！输出目录: {exportDir}");
+        ClearResourcesAssetBundleName();
+        ClearAllAssetBundleNames();
     }
 }
