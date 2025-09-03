@@ -163,7 +163,7 @@ public class PackSetting: EditorWindow
 
     private string CreateExportDir()
     {
-        var exportPath = Path.Combine(modMeta.modBuildDir, modMeta.name);
+        var exportPath = Path.Combine(modMeta.modBuildDir, modMeta.id);
         if (Directory.Exists(exportPath))
         {
             Directory.Delete(exportPath, true);
