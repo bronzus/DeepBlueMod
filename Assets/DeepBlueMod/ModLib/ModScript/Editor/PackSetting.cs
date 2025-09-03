@@ -251,12 +251,12 @@ public class PackSetting: EditorWindow
                 if (assetPath.EndsWith(".unity"))
                 {
                     string bundleName = Path.GetFileNameWithoutExtension(assetPath).ToLower();
-                    importer.assetBundleName = $"{bundleName}.scene";
+                    importer.assetBundleName = $"{modMeta.id}_{bundleName}.scene";
                 }
                 else
                 {
                     // 分配到base.ab
-                    importer.assetBundleName = "base.ab";
+                    importer.assetBundleName = $"{modMeta.id}_base.ab";
                 }
             }
         }
