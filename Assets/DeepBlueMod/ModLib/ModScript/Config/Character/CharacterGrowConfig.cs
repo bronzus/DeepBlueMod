@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace kz.config
 {
-    [CreateAssetMenu(fileName = "CharacterGrowConfig", menuName = "ScriptableObject/角色成长配置文件", order = 6)]
+    [CreateAssetMenu(fileName = "CharacterGrowConfig", menuName = "ScriptableObject/CharacterGrowConfig", order = 6)]
     public class CharacterGrowConfig:ScriptableObject
     {
         [Tooltip("大小的成长系数")]

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace kz.config
 {
-    [CreateAssetMenu(fileName = "CharacterMouthConfig", menuName = "ScriptableObject/角色嘴巴配置文件", order = 20)]
+    [CreateAssetMenu(fileName = "CharacterMouthConfig", menuName = "ScriptableObject/CharacterMouthConfig", order = 20)]
     public class CharacterMouthConfig:ScriptableObject
     {
         public float initialMouthSize = 1f;

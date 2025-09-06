@@ -1,9 +1,12 @@
 using UnityEngine;
+using System;
 using System.Collections.Generic;
+using kz.uitls;
+using Newtonsoft.Json;
 
 namespace kz.config
 {
-    [CreateAssetMenu(fileName = "CharacterConfig", menuName = "ScriptableObject/角色配置文件", order = 1)]
+    [CreateAssetMenu(fileName = "CharacterConfig", menuName = "ScriptableObject/CharacterConfig", order = 1)]
     public class CharacterConfig:ScriptableObject
     {
         [Tooltip("生物的层级，层级越高生物越高级，这与进化有关")]
@@ -44,11 +47,13 @@ namespace kz.config
         public CharacterCoinsObtainedAfterKilled coinsObtainedAfterKilled;
         public CharacterGrowConfig growConfig;
         public CharacterAiConfig characterAiConfig;
-        public CharacterEvolveConfig characterEvolveConfig;
         public CharacterUnlockCondition UnlockCondition = new CharacterUnlockCondition();
         public CharacterExpConfig expConfig;
         public CharacterMouthConfig mouthConfig;
         public CharacterDieActionConfig characterDieActionConfig;
-        public CharacterSwimBehaviourConfig swimBehaviourConfig; 
+        public CharacterSwimBehaviourConfig swimBehaviourConfig;
+        public CharacterWalkBehaviourConfig walkBehaviourConfig; 
+        
+        public CharacterAmphibiousBehaviourConfig amphibiousBehaviourConfig;
     }
 }

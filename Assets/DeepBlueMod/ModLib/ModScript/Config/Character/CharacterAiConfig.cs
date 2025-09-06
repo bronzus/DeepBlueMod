@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace kz.config
 {
-    [CreateAssetMenu(fileName = "CharacterAiConfig", menuName = "ScriptableObject/角色AI配置文件", order = 5)]
+    [CreateAssetMenu(fileName = "CharacterAiConfig", menuName = "ScriptableObject/CharacterAiConfig", order = 5)]
     public class CharacterAiConfig:ScriptableObject
     {
         [Serializable]
