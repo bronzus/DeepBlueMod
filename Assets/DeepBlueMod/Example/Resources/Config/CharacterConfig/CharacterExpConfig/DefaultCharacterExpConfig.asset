@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialExp: 100
   expExponentialGrowRatio: 1.2
-  expBeProvidedProportion: 0.45
+  initialExpBeProvidedProportion: 0.45
+  expBeProvidedProportionGrowRatio: 1
+  expBeProvidedProportionGrowExponent: 0.15

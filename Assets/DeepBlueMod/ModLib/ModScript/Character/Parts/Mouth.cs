@@ -6,7 +6,7 @@ namespace kz
     public class Mouth : NetworkBehaviour
     {
         public CharacterCore characterCore;
-        public AudioSource eatFoodSound;
+        public AudioClip eatFoodSound;
         public ParticleSystem mouthSuctionEffect;
     }
 }

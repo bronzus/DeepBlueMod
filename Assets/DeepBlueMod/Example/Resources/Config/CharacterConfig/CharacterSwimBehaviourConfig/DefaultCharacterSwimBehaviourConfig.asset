@@ -18,5 +18,5 @@ MonoBehaviour:
   outWaterDamageDelay: 10
   maxCanJumpBodyAngel: 180
   jumpAngel: 45
-  initialJumpVelocitySize: 3
-  jumpVelocitySizeGrowRatio: 0.2
+  initialJumpVelocitySize: 3.5
+  jumpVelocitySizeGrowRatio: 0.047

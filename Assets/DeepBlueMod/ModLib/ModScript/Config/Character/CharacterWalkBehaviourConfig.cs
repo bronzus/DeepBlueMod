@@ -6,7 +6,6 @@ namespace kz.config
     public class CharacterWalkBehaviourConfig:ScriptableObject
     {
         public float aiJumpInterval = 1f;
-        public float initialHeightAboveGround = 0f;
         public float jumpHeight = 10f;
         public float maxWalkSlope = 45f;
         

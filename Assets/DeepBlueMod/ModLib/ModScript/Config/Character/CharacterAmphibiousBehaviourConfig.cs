@@ -6,9 +6,9 @@ namespace kz.config
     public class CharacterAmphibiousBehaviourConfig:ScriptableObject
     {
         public float aiJumpInterval = 1f;
-        public float initialHeightAboveGround = 0f;
         public float jumpHeight = 10f;
         public float maxWalkSlope = 45f;
         public float walkSpeedMul = 1f;
+        public bool canWalkInWater = false;
     }
 }

@@ -12,5 +12,6 @@ namespace kz
         public string skillNameLocalizedKey;
         public BaseSkillConfig baseConfig;
         public Sprite skillIcon;
+        public bool passiveSkill;
     }
 }
