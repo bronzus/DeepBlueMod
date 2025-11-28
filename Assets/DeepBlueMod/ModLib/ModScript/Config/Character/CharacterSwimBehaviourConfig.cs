@@ -5,6 +5,7 @@ namespace kz.config
     [CreateAssetMenu(fileName = "CharacterSwimBehaviourConfig", menuName = "ScriptableObject/CharacterSwimBehaviourConfig", order = 40)]
     public class CharacterSwimBehaviourConfig:ScriptableObject
     {
+        public bool outWaterCanSwim = false;
         [Tooltip("是否有离水伤害")]
         public bool hasOutWaterDamage = true;
         [Tooltip("离水伤害的比例")]
