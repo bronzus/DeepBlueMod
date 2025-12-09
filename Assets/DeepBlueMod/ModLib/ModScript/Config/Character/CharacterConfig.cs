@@ -19,8 +19,8 @@ namespace kz.config
         public float biteCharacterMaxSeconds = 2f;
         [Tooltip("咬住character时的伤害间隔")]
         public float biteCharacterDamageInterval = 0.3f;
-        // [Tooltip("初始吸引肉的半径")]
-        // public float initialAttractFoodRadius = 2f;
+        [Tooltip("吸引攻击的属性")] 
+        public float aggroIndex = 2;
         [Tooltip("初始最大生命值")]
         public int initialMaxHp = 16;
         [Tooltip("初始攻击力")]

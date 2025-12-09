@@ -5,6 +5,7 @@ namespace kz.config
     [CreateAssetMenu(fileName = "CharacterWalkBehaviourConfig", menuName = "ScriptableObject/CharacterWalkBehaviourConfig", order = 50)]
     public class CharacterWalkBehaviourConfig:ScriptableObject
     {
+        public bool canJump = true;
         public float aiJumpInterval = 1f;
         public float jumpHeight = 10f;
         public float maxWalkSlope = 45f;

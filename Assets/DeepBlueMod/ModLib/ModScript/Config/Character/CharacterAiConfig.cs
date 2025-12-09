@@ -21,10 +21,10 @@ namespace kz.config
         public float activeAttackViewAngle = 120f;
         [Tooltip("主动攻击的最小时间，即便被攻击者已经在主动攻击的范围之外，也要满足这个最小时间的要求")]
         public float activeAttackMinTime = 3f;
-        [Tooltip("初始触发主动攻击最小的半径")]
-        public float initialTriggerActiveAttackMinRadius;
-        [Tooltip("初始触发主动攻击最大等级差系数")]
-        public float triggerActiveAttackMaxLevelDiffRatio = 0.5f;
+        [Tooltip("触发主动的指数，越大越会触发主动攻击")]
+        public float triggerActiveAttackRatio = 2f;
+        [Tooltip("群殴指数")]
+        public int activeAttackEnemyMaxAggroNumber = 1;
         
         [Tooltip("额外的逃跑距离， 逃跑的距离 = detectionRadius +  extraFleeDistance")]
         public float extraFleeDistance = 10f;
