@@ -31,6 +31,7 @@ namespace kz.config
         public float initialSpDecreaseSpeed = 1;
         [Tooltip("初始体力值增加的速度")]
         public float initialSpIncreaseSpeed = 2;
+        public float spIncreaseSpeedMulWhenJog = 0.3f;
         [Tooltip("暴击概率")]
         public float criticalChance = 0.1f;
         [Tooltip("暴击加成")]
@@ -59,5 +60,6 @@ namespace kz.config
         public CharacterWalkBehaviourConfig walkBehaviourConfig; 
         [Tooltip("walkBehaviour 的配置, 如果生物没有CharacterAmphibiousBehaviour组件,那么这个配置无效")]
         public CharacterAmphibiousBehaviourConfig amphibiousBehaviourConfig;
+        public CharacterAutoRecoverHpConfig autoRecoverHpConfig = new();
     }
 }
