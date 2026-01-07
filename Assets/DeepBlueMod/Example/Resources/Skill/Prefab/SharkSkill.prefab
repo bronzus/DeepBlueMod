@@ -52,6 +52,7 @@ MonoBehaviour:
   skillNameLocalizedKey: SharkSkill
   baseConfig: {fileID: 11400000, guid: 5ac09312729373b4dba8ddfc781bdc77, type: 2}
   skillIcon: {fileID: 21300000, guid: 1f02ecd06db101b4582a61e35b008fbe, type: 3}
+  passiveSkill: 0
   luaScript: {fileID: 9027929339269108002, guid: f32820c424564d0993a5b6635669025c,
     type: 3}
   luaScriptInjectVariables:
@@ -62,7 +63,9 @@ MonoBehaviour:
     vector2Vars: []
     vector3Vars: []
     quaternionVars: []
-    gameObjectVars: []
+    gameObjectVars:
+    - key: useEffect
+      value: {fileID: 6411194650798255241}
     boolListVars: []
     intListVars: []
     floatListVars: []

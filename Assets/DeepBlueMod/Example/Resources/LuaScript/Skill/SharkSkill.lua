@@ -1,6 +1,7 @@
 SharkSkill = {
     useEffect = nil,
-    sharkBodyMesh = nil
+    sharkBodyMesh = nil,
+    AttackBoostMul = 1.7
 }
 
 function SharkSkill:Awake()
@@ -25,8 +26,12 @@ function SharkSkill:UseSkillWhenButtonDownLocalPlayer()
 end
 
 function SharkSkill:UseSkillOnServer()
-    self.skill.skillBuffCore:AddBuffOnServerByName("6f30443b-732e-448d-bdcd-b7757c7a1d3f", "AttackBoostBuff", 10);
+    self.skill.skillBuffCore:AddBuffOnServerByName("", "AttackBoostBuff", 12);
     self.skill:ClientRpc("ClientRpcPlayEffect", {})
+end
+
+function SharkSkill:GetSkillDesc()
+    return "这是描述， 加" + AttackBoostMul * self.skill.level + "倍的攻击力"
 end
 
 function SharkSkill:CommandUseSkill(params)
