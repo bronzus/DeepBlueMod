@@ -13,6 +13,6 @@ namespace kz.mod
         public List<GameObject> foods = new List<GameObject>();
         public List<GameObject> skills = new List<GameObject>();
         public List<GameObject> buffs = new List<GameObject>();
+        public List<GameObject> portals = new List<GameObject>();
     }
-    
 }
